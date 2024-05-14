@@ -18,3 +18,7 @@ docker run --rm -p 3000:8080 --network=host -v open-webui:/app/backend/data -e O
 # brew install mecab-unidic
 # https://github.com/MikimotoH/furigana
 # sudo apt-get install libmecab-dev mecab mecab-ipadic-utf8
+
+# Copy static files to /root/.pyenv/versions/ReaderApi/lib/python3.12/site-packages/streamlit/static
+#cp static/* /root/.pyenv/versions/ReaderApi/lib/python3.12/site-packages/streamlit/static/
+scp -r ReaderApi/poc/static/* root@hetzner2:/root/.pyenv/versions/ReaderApi/lib/python3.12/site-packages/streamlit/static/

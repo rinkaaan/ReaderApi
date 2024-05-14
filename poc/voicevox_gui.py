@@ -1,19 +1,56 @@
 import asyncio
 import base64
+import hmac
 import json
 import requests
 import streamlit as st
+from streamlit_cookies_controller import CookieController
 from voicevox import Client
 import nest_asyncio
 
 from mecab_demo_2 import get_html
 
-# Apply the nest_asyncio patch
 nest_asyncio.apply()
 
 st.set_page_config(page_title="VOICEVOX", layout="centered")
 
+controller = CookieController()
+
 st.title("VOICEVOX")
+
+
+# Function to check the password
+def check_password():
+    """Returns `True` if the user has the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
+            st.session_state["password_correct"] = True
+            controller.set('auth_cookie', st.secrets["password"])  # Set the cookie
+            del st.session_state["password"]  # Don't store the password.
+        else:
+            st.session_state["password_correct"] = False
+
+    # Check if the auth cookie exists and is correct
+    stored_password = controller.get('auth_cookie')
+    if stored_password and hmac.compare_digest(st.secrets["password"], stored_password):
+        st.session_state["password_correct"] = True
+
+    # Return True if the password is validated.
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # If no valid cookie, show input for password.
+    if stored_password is None or not hmac.compare_digest(st.secrets["password"], stored_password):
+        st.text_input("Password", type="password", on_change=password_entered, key="password")
+        if "password_correct" in st.session_state and not st.session_state["password_correct"]:
+            st.error("😕 Password incorrect")
+        return False
+    return True
+
+if not check_password():
+    st.stop()  # Do not continue if check_password is not True.
 
 # Load JSON data from file
 with open('voices.json', 'r') as file:
@@ -84,7 +121,16 @@ if st.button("Submit"):
             st.write(f"**Furigana:** {furigana_text}", unsafe_allow_html=True)
             translated_text = translate(text_input)
             st.write(f"**Translation:** {translated_text}")
-            asyncio.run(generate_audio(text_input, speaker=selected_index))
+            # asyncio.run(generate_audio(text_input, speaker=selected_index))
+            # autoplay_audio("voice.wav")
+
+            # Run the async function to generate audio and wait for it to complete
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            loop.run_until_complete(
+                    generate_audio(text_input, speaker=selected_index))
+
+            # Play the audio after it's generated
             autoplay_audio("voice.wav")
         except Exception as e:
             st.error(f"An error occurred: {e}")

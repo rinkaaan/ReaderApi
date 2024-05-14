@@ -1,0 +1,8 @@
+{
+  "short_name": "Reader",
+  "name": "Reader",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000716",
+  "background_color": "#ffffff"
+}

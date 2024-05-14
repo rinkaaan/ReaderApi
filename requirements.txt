@@ -17,3 +17,4 @@ matplotlib
 mecab-python3
 jaconv
 nest_asyncio
+streamlit-cookies-controller
