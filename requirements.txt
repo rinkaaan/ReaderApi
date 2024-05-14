@@ -13,3 +13,7 @@ pytest
 voicevox-client
 streamlit
 watchdog
+matplotlib
+furigana @ git+https://github.com/MikimotoH/furigana@master
+mecab-python3
+jaconv
