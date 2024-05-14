@@ -5,5 +5,5 @@ WORKSPACE="$WORKPLACE/ReaderApi"
 (
   cd "$WORKSPACE"
   rsync-project Reader
-  ssh root@hetzner "pm2 restart api-media"
+  ssh root@hetzner2 "pm2 restart api-reader"
 )

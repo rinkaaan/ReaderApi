@@ -12,11 +12,11 @@ from mecab_demo_2 import get_html
 
 nest_asyncio.apply()
 
-st.set_page_config(page_title="VOICEVOX", layout="centered")
+st.set_page_config(page_title="Reader", layout="centered")
 
 controller = CookieController()
 
-st.title("VOICEVOX")
+st.title("Reader")
 
 
 # Function to check the password
