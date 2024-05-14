@@ -1,0 +1,30 @@
+Translate to natural Japanese; prioritize making it sound natural over accurate translation; avoid using any English words by paraphrasing in Japanese; respond only with translation:
+
+Maybe take that explanation with a pinch of salt. This, after all, comes from a man who consolidated control in social media by buying and copying his competitors, and who has near-dictatorial control over Meta with more than 50% of total voting power.
+
+
+Translate to natural English; prioritize making it sound natural over accurate translation; avoid using any Japanese words by paraphrasing in English; respond only with translation:
+
+Translate to natural english and respond only with translation. Prioritize ease of understanding over accuracy in translation:
+　凜鳳は本当に嫌がっている。
+
+
+
+　対して、風華は普段の強気な態度とは違って、恥ずかしがっていた。
+
+
+
+「お、俺がこんな服を着ても似合わないだろ！」
+
+
+
+　二人を前にしているのは、教育係として任命されたセリーナである。
+
+
+
+　侍女長であるセリーナから直接教育を受けるなど、特別待遇に他ならない。
+
+
+
+「本当に野生児みたいな子たちだね」
+
